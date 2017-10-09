@@ -1,2 +1,2 @@
-# iTunes-Cover-Scroller
+# iTunes Cover Scroller
 Itunes Inspired Cover Scroller
