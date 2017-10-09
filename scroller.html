@@ -3,85 +3,13 @@
 <html>
 
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Itunes Inspired jQuery Movie Scroller Demo</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Itunes Inspired jQuery Movie Scroller Demo</title>
    <link rel="stylesheet" type="text/css" media="all" href="css/slider.css" />
-   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
-   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>    
-   <script type="text/javascript">
-	$(function() {
-		//scrollpane parts
-		var scrollPane = $( ".scroll-pane" ),
-			scrollContent = $( ".scroll-content" );
-		
-		//build slider
-		var scrollbar = $( ".scroll-bar" ).slider({
-			slide: function( event, ui ) {
-				if ( scrollContent.width() > scrollPane.width() ) {
-					scrollContent.css( "margin-left", Math.round(
-						ui.value / 100 * ( scrollPane.width() - scrollContent.width() )
-					) + "px" );
-				} else {
-					scrollContent.css( "margin-left", 0 );
-				}
-			},
-			
-			animate: 'slow'
-		});
-		
-		//append icon to handle
-		var handleHelper = scrollbar.find( ".ui-slider-handle" )
-		.mousedown(function() {
-			scrollbar.width( handleHelper.width() );
-		})
-		.mouseup(function() {
-			scrollbar.width( "100%" );
-		})
-		.append( "<span class='ui-icon ui-icon-grip-dotted-vertical'></span>" )
-		.wrap( "<div class='ui-handle-helper-parent'></div>" ).parent();
-		
-		//change overflow to hidden now that slider handles the scrolling
-		scrollPane.css( "overflow", "hidden" );
-		
-		//size scrollbar and handle proportionally to scroll distance
-		function sizeScrollbar() {
-			var remainder = scrollContent.width() - scrollPane.width();
-			var proportion = remainder / scrollContent.width();
-			var handleSize = scrollPane.width() - ( proportion * scrollPane.width() );
-			scrollbar.find( ".ui-slider-handle" ).css({
-				width: handleSize,
-				"margin-left": -handleSize / 2
-			});
-			handleHelper.width( "" ).width( scrollbar.width() - handleSize );
-		}
-		
-		//reset slider value based on scroll content position
-		function resetValue() {
-			var remainder = scrollPane.width() - scrollContent.width();
-			var leftVal = scrollContent.css( "margin-left" ) === "auto" ? 0 :
-				parseInt( scrollContent.css( "margin-left" ) );
-			var percentage = Math.round( leftVal / remainder * 100 );
-			scrollbar.slider( "value", percentage );
-		}
-		
-		//if the slider is 100% and window gets larger, reveal content
-		function reflowContent() {
-				var showing = scrollContent.width() + parseInt( scrollContent.css( "margin-left" ), 10 );
-				var gap = scrollPane.width() - showing;
-				if ( gap > 0 ) {
-					scrollContent.css( "margin-left", parseInt( scrollContent.css( "margin-left" ), 10 ) + gap );
-				}
-		}
-		
-		//change handle position on window resize
-		$( window ).resize(function() {
-			resetValue();
-			sizeScrollbar();
-			reflowContent();
-		});
-		//init scrollbar size
-		setTimeout( sizeScrollbar, 10 );//safari wants a timeout
-	});
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+   <script type="text/javascript" src="./js/scroller.js"></script>
+
 	</script>
 </head>
 
@@ -92,7 +20,7 @@
         </header>
 
         <section>
-			
+
 
 
 
@@ -103,111 +31,111 @@
 
 
                 <div id="scroller">
-                
+
                 	<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 						<div class="scroll-content">
-							
+
 							<div class="scroll-content-item ui-widget-header first">
-							
+
 								<div class="im"><img src="scroller-images/ac-brotherhood.png" alt="ac-brotherhood" width="114" height="160" /></div>
 								<div class="title">AC Brotherhood</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/alan-wake.png" alt="alan-wake" width="114" height="160" /></div>
 								<div class="title">Alan Wake</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/borderlands.png" alt="borderlands" width="114" height="160" /></div>
 								<div class="title">Boarderlands</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/bulletstorm.png" alt="bulletstorm" width="114" height="160" /></div>
 								<div class="title">Bulletstorm</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/cod-black-ops.png" alt="cod-black-ops" width="114" height="160" /></div>
 								<div class="title">COD Black Ops</div>
-							
+
 							</div>
-							
+
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/dead-island.png" alt="dead-island" width="114" height="160" /></div>
 								<div class="title">Dead Island</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/fable-3.png" alt="fable-3" width="114" height="160" /></div>
 								<div class="title">Fable III</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/fallout-3.png" alt="fallout-3" width="114" height="160" /></div>
 								<div class="title">Fallout 3</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/far-cry-2.png" alt="far-cry-2" width="114" height="160" /></div>
 								<div class="title">Far Cry 2</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/gta-4.png" alt="gta-4" width="114" height="160" /></div>
 								<div class="title">GTA 4</div>
-							
+
 							</div>
-							
+
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/rdr-undead-nightmare.png" alt="fallout-3" width="114" height="160" /></div>
 								<div class="title">RDR Undead Nightmare</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/resident-evil-5.png" alt="far-cry-2" width="114" height="160" /></div>
 								<div class="title">Resident Evil 5</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/sc-conviction.png" alt="gta-4" width="114" height="160" /></div>
 								<div class="title">Splinter Cell Conviction</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/la-noire.png" alt="la-noire" width="114" height="160" /></div>
 								<div class="title">LA Noire</div>
-							
+
 							</div>
 							<div class="scroll-content-item ui-widget-header">
-							
+
 								<div class="im"><img src="scroller-images/prototype.png" alt="prototype" width="114" height="160" /></div>
 								<div class="title">Prototype</div>
-							
+
 							</div>
-							
+
 						</div>
 						<div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
 							<div class="scroll-bar"></div>
 						</div>
 					</div>
-                	
+
                 </div>
-                
+
                 <div class="description"><p>This thing is pretty freaking sweet...it scales with the number of items that you have displayed. Use this puppy however you see fit...albums, dvds, vinyl, games...you name it! All we ask is that you share the wealth and tell your cronies!</p></div>
 
         </section>
